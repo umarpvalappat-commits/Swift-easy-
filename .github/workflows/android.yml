@@ -1,16 +1,17 @@
 name: Build SwiftEasy Android APK
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout source
         uses: actions/checkout@v4
 
@@ -21,20 +22,22 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Create Android project structure
-        working-directory: Swift easy-android
-        run: flutter create --platforms=android .
+      - name: Create Flutter Android project
+        run: |
+          flutter create --project-name swifteasy_android --platforms=android swifteasy_android
 
       - name: Get dependencies
-        working-directory: Swift easy-android
-        run: flutter pub get
+        working-directory: swifteasy_android
+        run: |
+          flutter pub get
 
-      - name: Build APK
-        working-directory: Swift easy-android
-        run: flutter build apk --release
+      - name: Build Release APK
+        working-directory: swifteasy_android
+        run: |
+          flutter build apk --release
 
-      - name: Upload APK
+      - name: Upload SwiftEasy APK
         uses: actions/upload-artifact@v4
         with:
           name: SwiftEasy-Android-APK
-          path: Swift easy-android/build/app/outputs/flutter-apk/app-release.apk
+          path: swifteasy_android/build/app/outputs/flutter-apk/app-release.apk
