@@ -1,14 +1,17 @@
-# Swift Easy Android
+# Swift Easy Customer Android — Build Ready
 
-Android foundation for Swift Easy:
-- Bank template selector
-- Date, payee, amount and cheque number
-- AED amount entry
-- 205 x 127 mm cheque reference
-- Alignment settings
-- Preview entry point
-- GitHub Actions APK build
+Customer-focused Android app for Swift Easy.
 
-The exact Windows application's printing engine, SQLite history, licensing,
-Zoho integration and printer integration still need to be ported from the
-original Swift Easy source for a production-equivalent Android release.
+Included:
+- Bank template selection
+- Cheque number, payee, amount and date
+- AED amount-to-words
+- Cheque preview
+- Alignment settings (205 × 127 mm target)
+- Local cheque history
+- Android release workflow
+
+Build:
+GitHub Actions -> Build Swift Easy Customer APK -> Artifacts -> SwiftEasy-Customer-Android-APK
+
+Note: This is the customer mobile application foundation. Device-specific printer integration and the exact original Swift Easy logo asset can be added when those assets/specifications are available.

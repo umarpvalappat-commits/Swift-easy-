@@ -1,8 +1,10 @@
-name: Build Swift Easy Android APK
+name: Build Swift Easy Customer APK
+
 on:
   workflow_dispatch:
   push:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +15,11 @@ jobs:
           flutter-version: "3.24.5"
           channel: stable
           cache: true
-      - run: flutter create --platforms=android --project-name swift_easy_android .
+      - run: flutter create --platforms=android --project-name swift_easy_customer .
       - run: flutter pub get
+      - run: flutter analyze
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
         with:
-          name: swift-easy-android-apk
+          name: SwiftEasy-Customer-Android-APK
           path: build/app/outputs/flutter-apk/app-release.apk
