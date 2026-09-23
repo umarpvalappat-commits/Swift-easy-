@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout source
         uses: actions/checkout@v4
 
@@ -22,22 +21,17 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Create Flutter Android project
-        run: |
-          flutter create --project-name swifteasy_android --platforms=android swifteasy_android
+      - name: Create Android platform files
+        run: flutter create --platforms=android .
 
       - name: Get dependencies
-        working-directory: swifteasy_android
-        run: |
-          flutter pub get
+        run: flutter pub get
 
       - name: Build Release APK
-        working-directory: swifteasy_android
-        run: |
-          flutter build apk --release
+        run: flutter build apk --release
 
       - name: Upload SwiftEasy APK
         uses: actions/upload-artifact@v4
         with:
           name: SwiftEasy-Android-APK
-          path: swifteasy_android/build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
